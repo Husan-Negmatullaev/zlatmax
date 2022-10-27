@@ -52,32 +52,37 @@ $responsiveType: 1;
 @import "base/null";
 
 body {
-	font-weight: 500;
-	color:#000;
-	// Скролл заблокирован
-	.lock & {
-		overflow: hidden;
-		touch-action: none;
-	}
-	// Сайт загружен
-	.loaded & {
-	}
+  font-weight: 500;
+  color: #000;
+
+  // Скролл заблокирован
+  .lock & {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  // Сайт загружен
+  .loaded & {}
 }
+
 // Оболочка ============================================================================================================================================================================================================================================================================================================================================================================================================================================
 .wrapper {
-	min-height: 100%;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	// Прижимаем footer
-	> main {
-		flex: 1 1 auto;
-	}
-	// Фикс для слайдеров
-	> * {
-		min-width: 0;
-	}
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // Прижимаем footer
+  >main {
+    flex: 1 1 auto;
+  }
+
+  // Фикс для слайдеров
+  >* {
+    min-width: 0;
+  }
 }
+
 // Ограничивающий контейнер ======================================================================================================================================================================================================================
 
 /*
@@ -87,42 +92,54 @@ body {
 Снипет (HTML): cnt
 */
 @if ($responsiveType==1) {
-	// Отзывчивая
-	[class*="__container"] {
-		@if ($maxWidthContainer>0) {
-			max-width: rem($maxWidthContainer);
-			box-sizing: content-box;
-			margin: 0 auto;
-		}
-		@if ($containerPadding>0) {
-			padding: 0 rem(math.div($containerPadding, 2));
-		}
-	}
-} @else {
-	// По брейк-поинтам
-	[class*="__container"] {
-		margin: 0 auto;
-		@if ($maxWidthContainer>0) {
-			max-width: rem($maxWidthContainer);
-			box-sizing: content-box;
-		} @else {
-			@if ($containerPadding>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			}
-		}
-		@media (max-width: $pc) {
-			max-width: rem(970);
-		}
-		@media (max-width: $tablet) {
-			max-width: rem(750);
-		}
-		@media (max-width: $mobile) {
-			max-width: none;
-			@if ($containerPadding>0 and $maxWidthContainer>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			}
-		}
-	}
+
+  // Отзывчивая
+  [class*="__container"] {
+    @if ($maxWidthContainer>0) {
+      max-width: rem($maxWidthContainer);
+      box-sizing: content-box;
+      margin: 0 auto;
+    }
+
+    @if ($containerPadding>0) {
+      padding: 0 rem(math.div($containerPadding, 2));
+    }
+  }
+}
+
+@else {
+
+  // По брейк-поинтам
+  [class*="__container"] {
+    margin: 0 auto;
+
+    @if ($maxWidthContainer>0) {
+      max-width: rem($maxWidthContainer);
+      box-sizing: content-box;
+    }
+
+    @else {
+      @if ($containerPadding>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+
+    @media (max-width: $pc) {
+      max-width: rem(970);
+    }
+
+    @media (max-width: $tablet) {
+      max-width: rem(750);
+    }
+
+    @media (max-width: $mobile) {
+      max-width: none;
+
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+  }
 }
 
 // Подключение базовых стилей, шаблонов (заготовок) и вспомогательных  классов
@@ -138,3 +155,14 @@ body {
 
 // Подключение стилей отдельных страниц
 @import "home";
+
+.page {
+
+  // .page_home
+
+  &_home {}
+
+  // .page__main-block
+
+  &__main-block {}
+}
